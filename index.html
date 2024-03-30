@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+</head>
+<body>
+
+    <center>
+
+    <h1>Digital Clock</h1>
+
+    <div id="digital-clock">
+        <h1 id="time"></h1>
+    </div>
+    
+    </center>
+
+    <script>
+    function updateClock(){
+        var currentTime = new Date();
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+        var seconds = currentTime.getSeconds();
+        var merideim = "AM";
+        
+
+        if(hours > 12){
+            hours = hours - 12
+            merideim = "PM"
+        }
+
+        minutes = (minutes < 10 ? "0" : "") + minutes;
+        seconds = (seconds < 10 ? "0" : "") + seconds;
+
+
+        var timeString = hours.toString().padStart(2,"0") + ":" + minutes.toString().padStart(2,"0") + ":" + seconds.toString().padStart(2,"0");
+
+        document.getElementById("time").textContent = timeString;
+
+        setTimeout(updateClock, 1000); // Use setTimeout instead of setInterval to avoid multiple calls if the function takes more than one second to execute
+
+    }
+    updateClock();
+
+
+    </script>
+</body>
+</html>
